@@ -105,15 +105,19 @@ export class ProfilCardService {
    */
   getTheLoggedInUser() {
     this.authSubscription = this.auth.onAuthStateChanged((user) => {
-      if (user) {
+      if(user) {
         this.profilePic = user.photoURL;
-        this.headerProfilePic = user.photoURL;
+        if(this.auth.currentUser.uid == 'X9APNd1z7yVsW7sP3kyVk79DHWo1') {
+          this.headerProfilePic = 'assets/img/login/profile_generic_big.png';
+        } else {
+          this.headerProfilePic = user.photoURL;
+        }
         this.userNameandSurname = user.displayName;
         this.headerUserNameandSurname = user.displayName;
         this.userEmailAddress = user.email;
         this.currentUserId = user.uid;
       } else {
-        this.profilePic = '/assets/img/login/profile_generic_big.png';
+        this.profilePic = 'assets/img/login/profile_generic_big.png';
         this.userNameandSurname = 'Max Mustermann';
         this.userEmailAddress = 'maxmustermann@gmail.com'
       }
