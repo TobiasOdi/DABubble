@@ -4,43 +4,19 @@ import { Router } from '@angular/router';
 import { RouterModule } from '@angular/router';
 import { initializeApp } from 'firebase/app';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import {
-  getFirestore,
-  collection,
-  doc,
-  setDoc,
-  addDoc,
-  updateDoc,
-  arrayUnion,
-} from 'firebase/firestore';
-import {
-  FormBuilder,
-  ReactiveFormsModule,
-  ValidationErrors,
-  Validators,
-} from '@angular/forms';
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  signOut,
-  updateProfile,
-} from 'firebase/auth';
+import { getFirestore, collection, doc, setDoc, addDoc, updateDoc,arrayUnion} from 'firebase/firestore';
+import { FormBuilder, ReactiveFormsModule, ValidationErrors, Validators} from '@angular/forms';
+import { getAuth, createUserWithEmailAndPassword, signOut, updateProfile} from 'firebase/auth';
 import { DirectMessage } from '../../models/directMessage.class';
-import {
-  deleteObject,
-  getDownloadURL,
-  getStorage,
-  ref,
-  uploadBytes,
-} from 'firebase/storage';
+import { deleteObject, getDownloadURL, getStorage, ref, uploadBytes} from 'firebase/storage';
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyC520Za3P8qTUGvWM0KxuYqGIMaz-Vd48k',
-  authDomain: 'da-bubble-87fea.firebaseapp.com',
-  projectId: 'da-bubble-87fea',
-  storageBucket: 'da-bubble-87fea.appspot.com',
-  messagingSenderId: '970901942782',
-  appId: '1:970901942782:web:56b67253649b6206f290af',
+  apiKey: "AIzaSyAmHLlg6nksAWT9uyaNO4O9qk9Tsq0dC4A",
+  authDomain: "dabubble-2a0d1.firebaseapp.com",
+  projectId: "dabubble-2a0d1",
+  storageBucket: "dabubble-2a0d1.appspot.com",
+  messagingSenderId: "715027715963",
+  appId: "1:715027715963:web:556dd9e26663825eee0fde"
 };
 
 const app = initializeApp(firebaseConfig);
@@ -204,7 +180,7 @@ export class SignUpComponent implements OnInit {
   async createWelcomeMessage() {
     const welcomeMessage = new DirectMessage({
       yourMessage: false,
-      createdBy: 'WqUfBH53bPVombxH2XPYN70RULp1',
+      createdBy: 'cyVi0JrZQebrLqR3bzU7DlQ3yey1',
       creationDate: Date.now(),
       message:
         'Herzlich willkommen auf dem Code Learning Server 👋 ich hoffe, du hast gut hergefunden',
@@ -214,7 +190,7 @@ export class SignUpComponent implements OnInit {
     const newUserRef = doc(
       db,
       `users/${this.auth.currentUser.uid}/allDirectMessages`,
-      'WqUfBH53bPVombxH2XPYN70RULp1'
+      'cyVi0JrZQebrLqR3bzU7DlQ3yey1'
     );
 
     try {
@@ -222,7 +198,7 @@ export class SignUpComponent implements OnInit {
 
       const directMessagesCollection = collection(
         db,
-        `users/${this.auth.currentUser.uid}/allDirectMessages/WqUfBH53bPVombxH2XPYN70RULp1/directMessages`
+        `users/${this.auth.currentUser.uid}/allDirectMessages/cyVi0JrZQebrLqR3bzU7DlQ3yey1/directMessages`
       );
 
       const docRefNewUser = await addDoc(
@@ -233,7 +209,7 @@ export class SignUpComponent implements OnInit {
       await updateDoc(
         doc(
           db,
-          `users/${this.auth.currentUser.uid}/allDirectMessages/WqUfBH53bPVombxH2XPYN70RULp1/directMessages`,
+          `users/${this.auth.currentUser.uid}/allDirectMessages/cyVi0JrZQebrLqR3bzU7DlQ3yey1/directMessages`,
           docRefNewUser.id
         ),
         {
@@ -246,7 +222,7 @@ export class SignUpComponent implements OnInit {
   }
 
   async addUserToGeneralChannel() {
-    const channelRef = doc(db, 'channels', 'allgemein');
+    const channelRef = doc(db, 'channels', '05Aha1jtwKOicFjTcYF5');
     await updateDoc(channelRef, {
       members: arrayUnion(this.auth.currentUser.uid),
     });

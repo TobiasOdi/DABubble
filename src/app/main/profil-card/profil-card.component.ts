@@ -1,24 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { ProfilCardService } from '../../services/profil-card.service';
 import { CommonModule } from '@angular/common';
 import { MatIcon } from '@angular/material/icon';
-import { initializeApp } from 'firebase/app';
-import { getAuth, updateEmail, updateProfile } from "firebase/auth";
 import { FormsModule } from '@angular/forms';
-import { collection, doc, getFirestore, onSnapshot, query, setDoc } from 'firebase/firestore';
+import { Firestore, collection, doc, setDoc, limit, onSnapshot, orderBy, query } from '@angular/fire/firestore';
+import { getAuth, updateEmail, updateProfile } from '@angular/fire/auth';
 import { ChatService } from '../../services/chat.service';
-
-const firebaseConfig = {
-  apiKey: "AIzaSyC520Za3P8qTUGvWM0KxuYqGIMaz-Vd48k",
-  authDomain: "da-bubble-87fea.firebaseapp.com",
-  projectId: "da-bubble-87fea",
-  storageBucket: "da-bubble-87fea.appspot.com",
-  messagingSenderId: "970901942782",
-  appId: "1:970901942782:web:56b67253649b6206f290af"
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
 
 @Component({
   selector: 'app-profil-card',
@@ -29,8 +16,10 @@ const db = getFirestore(app);
 })
 
 export class ProfilCardComponent implements OnInit {
+  private db: Firestore = inject(Firestore);
+
   authSubscription: any;
-  auth = getAuth(app);
+  auth = getAuth();
   edit: boolean = false;
   userNameandSurname: string = '';
   profilePic: string = '';
@@ -82,7 +71,7 @@ export class ProfilCardComponent implements OnInit {
   }
 
   async createUserDetailsDoc() {
-    await setDoc(doc(db, "users", this.auth.currentUser.uid), {
+    await setDoc(doc(this.db, "users", this.auth.currentUser.uid), {
       name: this.auth.currentUser.displayName,
       email: this.auth.currentUser.email,
       imgUrl: this.auth.currentUser.photoURL,

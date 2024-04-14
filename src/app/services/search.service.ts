@@ -1,28 +1,19 @@
-import { Injectable } from '@angular/core';
-import { initializeApp } from 'firebase/app';
-import { getAuth } from 'firebase/auth';
-import { collection, getFirestore, query, onSnapshot, doc } from 'firebase/firestore';
+import { Injectable, inject } from '@angular/core';
+import { Firestore, collection, doc, onSnapshot, query } from '@angular/fire/firestore';
+import { getAuth } from '@angular/fire/auth';
+
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class SearchService {
+  private db: Firestore = inject(Firestore);
 
-  firebaseConfig = {
-    apiKey: "AIzaSyC520Za3P8qTUGvWM0KxuYqGIMaz-Vd48k",
-    authDomain: "da-bubble-87fea.firebaseapp.com",
-    projectId: "da-bubble-87fea",
-    storageBucket: "da-bubble-87fea.appspot.com",
-    messagingSenderId: "970901942782",
-    appId: "1:970901942782:web:56b67253649b6206f290af"
-  };
-  app = initializeApp(this.firebaseConfig);
-  db = getFirestore(this.app);
   userRef = collection(this.db, 'users');
   channelRef = collection(this.db, 'channels');
   threadsRef = collection(this.db, 'channels');
-  auth = getAuth(this.app);
+  auth = getAuth();
 
   searchUserResult = [];
   searchChannelsResult = [];

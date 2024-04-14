@@ -1,31 +1,18 @@
-import { EventEmitter, Injectable } from '@angular/core';
-import { initializeApp } from 'firebase/app';
-import { collection, doc, getFirestore, onSnapshot, query, setDoc } from 'firebase/firestore';
+import { EventEmitter, Injectable, inject } from '@angular/core';
 import { User } from '../../models/user.class';
-import { getAuth } from 'firebase/auth';
 import { ChatService } from './chat.service';
-
-
+import { Firestore, collection, doc, setDoc, onSnapshot, query } from '@angular/fire/firestore';
+import { getAuth } from '@angular/fire/auth';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class ProfilCardService {
+  private db: Firestore = inject(Firestore);
 
-  /* ========== FIREBASE ============ */
-  firebaseConfig = {
-    apiKey: "AIzaSyC520Za3P8qTUGvWM0KxuYqGIMaz-Vd48k",
-    authDomain: "da-bubble-87fea.firebaseapp.com",
-    projectId: "da-bubble-87fea",
-    storageBucket: "da-bubble-87fea.appspot.com",
-    messagingSenderId: "970901942782",
-    appId: "1:970901942782:web:56b67253649b6206f290af"
-  };
-  app = initializeApp(this.firebaseConfig);
-  db = getFirestore(this.app);
   userRef = collection(this.db, 'users');
-  auth = getAuth(this.app);
+  auth = getAuth();
   allUser = [];
   authSubscription: any;
   userNameandSurname: string = '';
@@ -46,7 +33,7 @@ export class ProfilCardService {
   constructor(private chatService: ChatService) { }
 
   checkIfGuestOnline() {
-    if (this.auth.currentUser.uid == 'qAspx2yXBnc0WtnBRJgVJsDniPC3') {
+    if (this.auth.currentUser.uid == 'X9APNd1z7yVsW7sP3kyVk79DHWo1') {
       this.guestIsOnline = true;
     } else {
       this.guestIsOnline = false;

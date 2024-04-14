@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ProfilCardComponent } from '../profil-card/profil-card.component';
 import { CommonModule } from '@angular/common';
-import { initializeApp } from 'firebase/app';
-import { collection, getFirestore, doc, updateDoc } from 'firebase/firestore';
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
+//import { initializeApp } from 'firebase/app';
+//import { collection, getFirestore, doc, updateDoc } from 'firebase/firestore';
+//import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { Router } from '@angular/router';
 import { ProfilCardService } from '../../services/profil-card.service';
 import { MatIconModule } from '@angular/material/icon';
@@ -12,8 +12,10 @@ import { FormsModule } from '@angular/forms';
 import { SearchService } from '../../services/search.service';
 import { ViewManagementService } from '../../services/view-management.service';
 import { ChatService } from '../../services/chat.service';
+import { getAuth, onAuthStateChanged, updateEmail, updateProfile } from '@angular/fire/auth';
+import { Firestore, collection, doc, setDoc, limit, onSnapshot, orderBy, query, updateDoc } from '@angular/fire/firestore';
 
-const firebaseConfig = {
+/* const firebaseConfig = {
   apiKey: 'AIzaSyC520Za3P8qTUGvWM0KxuYqGIMaz-Vd48k',
   authDomain: 'da-bubble-87fea.firebaseapp.com',
   projectId: 'da-bubble-87fea',
@@ -21,9 +23,9 @@ const firebaseConfig = {
   messagingSenderId: '970901942782',
   appId: '1:970901942782:web:56b67253649b6206f290af',
 };
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+ */
+//const app = initializeApp(firebaseConfig);
+//const db = getFirestore(app);
 
 @Component({
   selector: 'app-header',
@@ -33,6 +35,8 @@ const db = getFirestore(app);
   imports: [ProfilCardComponent, CommonModule, MatIconModule, FormsModule],
 })
 export class HeaderComponent implements OnInit {
+  private db: Firestore = inject(Firestore);
+
   authSubscription: any;
 
   ngOnInit(): void {
@@ -45,7 +49,7 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  auth = getAuth(app);
+  auth = getAuth();
   userNameandSurname: string = '';
   profilePic: string = '';
   userId: string = '';
@@ -60,7 +64,7 @@ export class HeaderComponent implements OnInit {
   inputValue: string = ''; // Initialisierung der Variable
   searchBarActive: boolean = true;
 
-  firebaseConfig = {
+  /* firebaseConfig = {
     apiKey: 'AIzaSyC520Za3P8qTUGvWM0KxuYqGIMaz-Vd48k',
     authDomain: 'da-bubble-87fea.firebaseapp.com',
     projectId: 'da-bubble-87fea',
@@ -68,8 +72,8 @@ export class HeaderComponent implements OnInit {
     messagingSenderId: '970901942782',
     appId: '1:970901942782:web:56b67253649b6206f290af',
   };
-  app = initializeApp(this.firebaseConfig);
-  db = getFirestore(this.app);
+  app = initializeApp(this.firebaseConfig); */
+  //db = getFirestore(this.app);
   userRef = collection(this.db, 'users');
 
   constructor(
@@ -177,7 +181,7 @@ export class HeaderComponent implements OnInit {
    */
   async signOut() {
     if (this.auth.currentUser.uid) {
-      let userRef = doc(db, 'users', this.auth.currentUser.uid);
+      let userRef = doc(this.db, 'users', this.auth.currentUser.uid);
       updateDoc(userRef, {
         isOnline: false,
       });

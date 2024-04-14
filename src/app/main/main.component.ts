@@ -12,10 +12,13 @@ import { ProfilCardComponent } from './profil-card/profil-card.component';
 import { ProfilCardService } from '../services/profil-card.service';
 import { ChatService } from '../services/chat.service';
 import { Router } from '@angular/router';
-import { initializeApp } from "firebase/app";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+//import { initializeApp } from "firebase/app";
+//import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { Firestore, collection, doc, setDoc, limit, onSnapshot, orderBy, query } from '@angular/fire/firestore';
+import { getAuth, onAuthStateChanged } from '@angular/fire/auth';
 
-const firebaseConfig = {
+
+/* const firebaseConfig = {
   apiKey: "AIzaSyC520Za3P8qTUGvWM0KxuYqGIMaz-Vd48k",
   authDomain: "da-bubble-87fea.firebaseapp.com",
   projectId: "da-bubble-87fea",
@@ -24,7 +27,7 @@ const firebaseConfig = {
   appId: "1:970901942782:web:56b67253649b6206f290af"
 };
 
-const app = initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig); */
 
 @Component({
   selector: 'app-main',
@@ -50,7 +53,7 @@ export class MainComponent implements OnInit {
   
   //screenSizeNumb: number;
 
-  auth = getAuth(app);
+  auth = getAuth();
   subscription: Subscription = new Subscription();
   threadOpen: boolean = false;
   userLoaded: boolean = false;
