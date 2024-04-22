@@ -61,12 +61,9 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   constructor(private fb: FormBuilder, private router: Router) {
     const animationHasRunBefore = sessionStorage.getItem('animationHasRun');
-
     if (animationHasRunBefore) {
       this.runAnimation = false;
     }
-
-
   }
 
   ngOnDestroy(): void {
@@ -167,17 +164,17 @@ startTheAnimation() {
   async createWelcomeMessage() {
   const welcomeMessage = new DirectMessage({
     yourMessage: false,
-    createdBy: 'gZrReha096XBbzYewrjt1cP8AZB2a',
+    createdBy: 'cyVi0JrZQebrLqR3bzU7DlQ3yey1',
     creationDate: Date.now(),
     message:
       'Herzlich willkommen auf dem Code Learning Server 👋 ich hoffe, du hast gut hergefunden',
     imageUrl:
-      'https://firebasestorage.googleapis.com/v0/b/da-bubble-87fea.appspot.com/o/userImages%2FwelcomeGif.gif?alt=media&token=91f0cf99-d5d8-47ad-be89-15ca36856c35',
+      'https://firebasestorage.googleapis.com/v0/b/dabubble-2a0d1.appspot.com/o/userImages%2FwelcomeGif.gif?alt=media&token=f5b4cf7d-bc7f-4eb6-810f-fa445817b1d3',
   });
   const newUserRef = doc(
     db,
     `users/${this.auth.currentUser.uid}/allDirectMessages`,
-    'gZrReha096XBbzYewrjt1cP8AZB2'
+    'cyVi0JrZQebrLqR3bzU7DlQ3yey1'
   );
 
   try {
@@ -185,7 +182,7 @@ startTheAnimation() {
 
     const directMessagesCollection = collection(
       db,
-      `users/${this.auth.currentUser.uid}/allDirectMessages/gZrReha096XBbzYewrjt1cP8AZB2/directMessages`
+      `users/${this.auth.currentUser.uid}/allDirectMessages/cyVi0JrZQebrLqR3bzU7DlQ3yey1/directMessages`
     );
 
     const docRefNewUser = await addDoc(
@@ -196,7 +193,7 @@ startTheAnimation() {
     await updateDoc(
       doc(
         db,
-        `users/${this.auth.currentUser.uid}/allDirectMessages/gZrReha096XBbzYewrjt1cP8AZB2/directMessages`,
+        `users/${this.auth.currentUser.uid}/allDirectMessages/cyVi0JrZQebrLqR3bzU7DlQ3yey1/directMessages`,
         docRefNewUser.id
       ),
       {
@@ -233,10 +230,11 @@ startTheAnimation() {
     });
     this.router.navigateByUrl('');
   }).catch((error) => {
-    if (error.code == 'auth/user-not-found') {
+    this.showFalseLoginAlert();
+
+/*     if (error.code == 'auth/user-not-found') {
       this.showFalseLoginAlert();
-    } else {
-    }
+    } */
   });
 }
 
@@ -295,5 +293,4 @@ checkErrors(control: string) {
     return this.getPWErrorMessage(errors);
   }
 }
-
 }

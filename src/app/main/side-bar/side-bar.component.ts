@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { DialogAddChannelComponent } from './dialog-add-channel/dialog-add-channel.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -7,36 +7,18 @@ import { DialogAddUserNewChannelComponent } from './dialog-add-user-new-channel/
 import { ViewManagementService } from '../../services/view-management.service';
 import { UserManagementService } from '../../services/user-management.service';
 import { ChatService } from '../../services/chat.service';
-import {
-  Firestore,
-  collection,
-  getDocs,
-  onSnapshot,
-  updateDoc,
-  doc,
-  addDoc,
-  getDoc,
-  QuerySnapshot,
-  DocumentData,
-} from '@angular/fire/firestore';
+import { Firestore, collection, getDocs, onSnapshot, updateDoc, doc, addDoc, getDoc, QuerySnapshot, DocumentData } from '@angular/fire/firestore';
 import { Channel } from '../../../models/channel.class';
 import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-side-bar',
   standalone: true,
-  imports: [
-    MatIconModule,
-    CommonModule,
-    DialogAddChannelComponent,
-    DialogAddUserNewChannelComponent,
-  ],
+  imports: [ MatIconModule, CommonModule, DialogAddChannelComponent, DialogAddUserNewChannelComponent ],
   templateUrl: './side-bar.component.html',
-  styleUrls: [
-    './side-bar.component.scss',
-    './side-bar.component-mediaquery.scss',
-  ],
+  styleUrls: ['./side-bar.component.scss', './side-bar.component-mediaquery.scss' ],
 })
+
 export class SideBarComponent {
   workspaceVisible: boolean = true;
   channelsVisible: boolean = true;
@@ -56,12 +38,9 @@ export class SideBarComponent {
   private subscription = new Subscription();
   private firestore: Firestore = inject(Firestore);
 
-  constructor(
-    public dialog: MatDialog,
-    public viewManagementService: ViewManagementService,
-    public userManagementService: UserManagementService,
-    private chatService: ChatService
-  ) {}
+  constructor(public dialog: MatDialog, public viewManagementService: ViewManagementService, public userManagementService: UserManagementService, private chatService: ChatService) {
+    
+  }
 
   async ngOnInit() {
     this.userManagementService.loadUsers();
@@ -292,18 +271,14 @@ export class SideBarComponent {
   }
 
   async preSelect(activeUserId: string) {
-    if (
-      this.viewManagementService.showNewMessage.value === true ||
-      this.viewManagementService.showDirectMessage.value === true
-    ) {
+    if (this.viewManagementService.showNewMessage.value === true || this.viewManagementService.showDirectMessage.value === true) {
+      
     } else {
       if (
-        (this.screenSize === 'medium' || this.screenSize === 'large') &&
-        this.getActiveChannelId() === null
-      ) {
+        (this.screenSize === 'medium' || this.screenSize === 'large') && this.getActiveChannelId() === null) {
         const isMember = await this.isUserMemberOfAllg(activeUserId);
         if (isMember) {
-          this.setActiveChannel('allgemein');
+          this.setActiveChannel('05Aha1jtwKOicFjTcYF5');
         } else {
           this.openNewMessage();
         }
@@ -312,7 +287,7 @@ export class SideBarComponent {
   }
 
   async isUserMemberOfAllg(userId: string) {
-    const generalChannelRef = doc(this.firestore, 'channels', 'allgemein');
+    const generalChannelRef = doc(this.firestore, 'channels', '05Aha1jtwKOicFjTcYF5');
     const generalChannelSnap = await getDoc(generalChannelRef);
     if (generalChannelSnap.exists() && generalChannelSnap.data()['members']) {
       return generalChannelSnap.data()['members'].includes(userId);

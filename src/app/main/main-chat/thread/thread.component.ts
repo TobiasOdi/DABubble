@@ -9,6 +9,7 @@ import { ViewManagementService } from '../../../services/view-management.service
 import { Firestore, addDoc, collection, deleteDoc, doc, getDoc, onSnapshot, orderBy, query, updateDoc } from '@angular/fire/firestore';
 import { MatIconModule } from '@angular/material/icon';
 import { getDownloadURL, getMetadata, getStorage, ref } from '@angular/fire/storage';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-thread',
@@ -24,8 +25,11 @@ export class ThreadComponent implements OnInit, OnChanges {
   @Input() currentUser!: string;
   @Input() currentUserName!: string;
   @Input() activeDmUser!: string;
+  activeDmUserSub: Subscription = new Subscription();
   @Input() acitveDmUserData!: any;
   @Input() activeChannelId!: string;
+  activeChannelSub: Subscription = new Subscription();
+
   @Input() path!: string;
   messageCount!: number;
   threadMessagesTimestamps = [];
@@ -41,12 +45,30 @@ export class ThreadComponent implements OnInit, OnChanges {
   reactionCount: number;
   messageCountPath: string;
 
-  constructor(private chatService: ChatService, private main: MainChatComponent, public viewManagementService: ViewManagementService,) { }
+  constructor(private chatService: ChatService, private main: MainChatComponent, public viewManagementService: ViewManagementService ) { 
+    this.activeChannelSub = this.chatService.activeChannelIdUpdates.subscribe((valueChannel) => {
+      if(valueChannel !== null) {
+        this.activeChannelId = valueChannel;
+        this.activeDmUser = null;
+        this.getMessageCountAndAnswer();
+      }
+    });
+      
+    this.activeDmUserSub = this.chatService.activeUserIdUpdates.subscribe((valueDm) => {
+      if(valueDm !== null) {
+        this.activeDmUser = valueDm;
+        this.activeChannelId = null;
+        this.messageCount = 0;
+      }
+    });
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     //this.reactionCollectionPath = this.path + `/${this.thread.threadId}/reactions`;
     if(this.activeChannelId == null) {
       this.reactionCollectionPath = `users/${this.currentUser}/allDirectMessages/${this.activeDmUser}/directMessages/${this.thread.threadId}/reactions`;
+      //this.messageCountPath = `users/${this.currentUser}/allDirectMessages/${this.activeDmUser}/directMessages`;
+
     } else {
       this.reactionCollectionPath = `channels/${this.activeChannelId}/threads/${this.thread.threadId}/reactions`;
       this.messageCountPath = `channels/${this.activeChannelId}/threads/${this.thread.threadId}/messages`;
@@ -150,18 +172,17 @@ export class ThreadComponent implements OnInit, OnChanges {
    */
   getMessageCountAndAnswer() {
     this.messageCount = 0;
-     const messagesRef = collection(this.firestore, `channels/${this.activeChannelId}/threads/${this.thread.threadId}/messages`);
-     const q = query(messagesRef, orderBy('creationDate', 'desc'));
-  
-     onSnapshot(q, (snapshot) => {
-     this.messageCount = snapshot.docs.length;
-     this.formatMessageCount();
-  
-       if (this.messageCount > 0) {
-         const lastMessageTimestamp = snapshot.docs[0].data()['creationDate'];
-         this.lastAnswer = this.main.getFormattedTime(lastMessageTimestamp);
-       }
-     });
+    const messagesRef = collection(this.firestore, this.messageCountPath);
+    const q = query(messagesRef, orderBy('creationDate', 'desc')); 
+    onSnapshot(q, (snapshot) => {
+    this.messageCount = snapshot.docs.length;
+    console.log('Message count', this.messageCount)
+    this.formatMessageCount();
+    if(this.messageCount > 0) {
+      const lastMessageTimestamp = snapshot.docs[0].data()['creationDate'];
+      this.lastAnswer = this.main.getFormattedTime(lastMessageTimestamp);
+    }
+    });
   }
 
   /**

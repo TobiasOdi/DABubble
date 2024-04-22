@@ -124,6 +124,8 @@ $bg-color: #ECEEFE;
     span {
         font-size: 18px;
         font-weight: 400;
+        width: 100%;
+        overflow-wrap: break-word;
     }
 
     .imgMessage {

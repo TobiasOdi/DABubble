@@ -26,12 +26,7 @@ const storage = getStorage();
 @Component({
   selector: 'app-sign-up',
   standalone: true,
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    RouterModule,
-  ],
+  imports: [ CommonModule, ReactiveFormsModule, MatFormFieldModule, RouterModule ],
   templateUrl: './sign-up.component.html',
   styleUrls: [
     './sign-up.component.scss',
@@ -185,7 +180,7 @@ export class SignUpComponent implements OnInit {
       message:
         'Herzlich willkommen auf dem Code Learning Server 👋 ich hoffe, du hast gut hergefunden',
       imageUrl:
-        'https://firebasestorage.googleapis.com/v0/b/da-bubble-87fea.appspot.com/o/userImages%2FwelcomeGif.gif?alt=media&token=91f0cf99-d5d8-47ad-be89-15ca36856c35',
+        'https://firebasestorage.googleapis.com/v0/b/dabubble-2a0d1.appspot.com/o/userImages%2FwelcomeGif.gif?alt=media&token=f5b4cf7d-bc7f-4eb6-810f-fa445817b1d3'
     });
     const newUserRef = doc(
       db,

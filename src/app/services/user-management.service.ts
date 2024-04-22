@@ -1,14 +1,7 @@
 import { Injectable } from '@angular/core';
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
-import {
-  collection,
-  doc,
-  getDocs,
-  getFirestore,
-  onSnapshot,
-  updateDoc,
-} from 'firebase/firestore';
+import { collection, doc, getDocs, getFirestore, onSnapshot, updateDoc } from 'firebase/firestore';
 import { BehaviorSubject, Observable, combineLatest, map } from 'rxjs';
 import { User } from '../../models/user.class';
 import { environment } from '../../environments/environment.development';

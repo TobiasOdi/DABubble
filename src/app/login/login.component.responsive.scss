@@ -122,13 +122,20 @@
     }
 }
 
+
+@media screen and (max-width: 480px) {
+    .bad-login-main {
+        right: unset;  
+    }
+}
+
 @media screen and (max-width: 450px) {
     .login-main {
         width: 100vw;
         height: auto;
-        padding-top: 30px;
+/*         padding-top: 30px;
         padding-bottom: 30px;
-    }
+ */    }
 
     .start-animation-logo {
         img {
@@ -178,4 +185,23 @@
         gap: 10px;
     }
 
+    .bad-login-main {
+        font-size: 18px;  
+        padding: 1rem;
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+    }
+}
+
+@media (max-width: 320px) {
+    .bad-login-main {
+        font-size: 16px;  
+    }
+}
+
+@media (max-width: 320px) {
+    .login-btns-container > button {
+        font-size: 16px;
+        padding: 12px;
+    }
 }
