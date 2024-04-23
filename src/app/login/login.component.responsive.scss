@@ -76,8 +76,6 @@
         }
     }
 
-
-
     .or-container {
         width: 358px !important;
         margin-bottom: 0px;
@@ -122,7 +120,6 @@
     }
 }
 
-
 @media screen and (max-width: 480px) {
     .bad-login-main {
         right: unset;  
@@ -133,9 +130,7 @@
     .login-main {
         width: 100vw;
         height: auto;
-/*         padding-top: 30px;
-        padding-bottom: 30px;
- */    }
+    }
 
     .start-animation-logo {
         img {
@@ -151,11 +146,16 @@
     }
 
     .login-form {
-        width: 100% !important;
-        border-radius: unset;
+        width: 95%!important;
 
         form {
             width: 100% !important;
+            gap: 0.5rem;
+        }
+
+        input {
+            padding: 14px 24px 14px 24px;
+            font-size: 16px;
         }
     }
 
@@ -173,6 +173,15 @@
     .login-hint {
         width: calc(100% - 20px) !important;
     }
+
+    .login-with-google-btn {
+        padding: 11px 20px;
+
+        p {
+            font-size: 16px;
+        }
+    }
+
 
     .or-container{
         width: calc(100% - 20px) !important;

@@ -86,11 +86,14 @@
     .imgContainer {
         display: flex;
         justify-content: center;
+        align-items: center;
+        border-radius: 50%;
 
         img {
             height: 200px;
             width: 200px;
-            border-radius: 100%;
+            border-radius: 50%;
+            object-fit: cover;
         }
     }
 

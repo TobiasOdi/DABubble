@@ -25,11 +25,7 @@
             <p>Neu bei DABubble ?</p>
             <a routerLink="/sign_up">Konto erstellen</a>
         </div>
-
     </div>
-
-
-
 
     <div class="login-form">
         <h1>Anmeldung</h1>
@@ -77,8 +73,6 @@
                 [class.btn-disabled]="!signInForm.valid" (click)="signIn()">Anmelden</button>
             <button class="guest-login-btn" (click)="signInAsGuest()">Gäste-Login</button>
         </div>
-
-
     </div>
 
     <div *ngIf="under650Px" class="create-account-container">

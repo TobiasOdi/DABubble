@@ -142,7 +142,7 @@ startTheAnimation() {
   }, 3100);
 }
 
-  async signInWithGoogle() {
+async signInWithGoogle() {
   await signInWithPopup(this.auth, provider)
     .then(async (result) => {
       const userDocRef = doc(db, 'users', result.user.uid);
@@ -216,13 +216,13 @@ startTheAnimation() {
 }
 
   async addUserToGeneralChannel() {
-  const channelRef = doc(db, 'channels', 'allgemein');
+  const channelRef = doc(db, 'channels', '05Aha1jtwKOicFjTcYF5');
   await updateDoc(channelRef, {
     members: arrayUnion(this.auth.currentUser.uid),
   });
 }
 
-  async signIn() {
+async signIn() {
   await signInWithEmailAndPassword(this.auth, this.signInForm.value.email, this.signInForm.value.password).then(async () => {
     let userRef = doc(db, "users", this.auth.currentUser.uid);
     await updateDoc(userRef, {

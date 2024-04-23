@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, NonNullableFormBuilder, ReactiveFormsModule, Va
 import { initializeApp } from "firebase/app";
 import { Router } from '@angular/router';
 import { confirmPasswordReset, getAuth, sendPasswordResetEmail, verifyPasswordResetCode } from 'firebase/auth';
+import { getFirestore, collection, onSnapshot, query } from 'firebase/firestore';
 import { CustomValidators } from '../models/custom-validators';
 import { PassForm } from '../models/pass-form.model';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -19,6 +20,8 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
 @Component({
   selector: 'app-password-reset',
   standalone: true,
@@ -28,6 +31,7 @@ const app = initializeApp(firebaseConfig);
 })
 
 export class PasswordResetComponent implements OnInit {
+  showAlert: boolean = false;
 
   constructor(
     private router: Router,
@@ -121,16 +125,45 @@ export class PasswordResetComponent implements OnInit {
   }
 
   async sendEmail() {
+    let userEmailExists = this.emailForPasswordResetForm.value.email; 
+    let userEmails = [];
 
-    sendPasswordResetEmail(this.auth, this.emailForPasswordResetForm.value.email)
-    this.sendEmailBtnDisabled = true;
-    this.emailSent = true;
-    setTimeout(() => {
-      this.emailSent = false;
-      this.sendEmailBtnDisabled = false;
-      this.goBackToLogin();
-    }, 1500);
+    const q = query(collection(db, 'users'));
+    onSnapshot(q, (list) => {
+      list.forEach(element => {
+        if(userEmailExists == element.data()['email']) {
+          userEmails.push(element.data()['email']);
+        }
+      });
+    });
 
+    if(userEmails.length == 0) {
+      this.showFalseLoginAlert();
+    } else {
+      await sendPasswordResetEmail(this.auth, this.emailForPasswordResetForm.value.email).then(async () => {
+        this.sendEmailBtnDisabled = true;
+        this.emailSent = true;
+        setTimeout(() => {
+          this.emailSent = false;
+          this.sendEmailBtnDisabled = false;
+          this.goBackToLogin();
+        }, 1500);
+      });
+    };
+    userEmails = [];
+
+/*     await sendPasswordResetEmail(this.auth, this.emailForPasswordResetForm.value.email).then(async () => {
+      this.sendEmailBtnDisabled = true;
+      this.emailSent = true;
+      setTimeout(() => {
+        this.emailSent = false;
+        this.sendEmailBtnDisabled = false;
+        this.goBackToLogin();
+      }, 1500);
+    }).catch((error) => {
+      console.log("USER EXISTIERT NICHT");
+      this.showFalseLoginAlert();
+    }); */
   }
 
   checkPasswordErrors(control: string) {
@@ -160,9 +193,17 @@ export class PasswordResetComponent implements OnInit {
       return 'Bitte geben Sie Ihre E-Mail-Adresse ein'
     } else if (errors['pattern']) {
       return 'Keine gültige E-Mail-Adresse'
-    } else {
+    } else if (errors['email']) {
       return
     }
+  }
+
+  showFalseLoginAlert() {
+    this.showAlert = true;
+    setTimeout(() => {
+      this.emailForPasswordResetForm.reset();
+      this.showAlert = false;
+    }, 3000);
   }
 
   resetPassword() {
