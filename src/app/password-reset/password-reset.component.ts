@@ -235,6 +235,5 @@ export class PasswordResetComponent implements OnInit {
     this.isText2 = !this.isText2
     this.type2 = this.isText2 ? "text" : "password";
   }
-
 }
 

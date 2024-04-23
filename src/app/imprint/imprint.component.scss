@@ -42,11 +42,18 @@ p {
 .padding-box {
     height: 100%;
     padding: 48px 56px 48px 56px;
+}
 
-    .back-arrow {
-        :hover {
-            scale: 1.1;
-        }
+.go-back-to-login-btn {
+    width: 40px;
+    height: 40px;
+    border: none;
+    background-color: white;
+    background-image: url('/assets/img/login/back.png');
+
+    &:hover {
+        background-image: url('/assets/img/login/back_hovered.png');
+        cursor: pointer;
     }
 }
 

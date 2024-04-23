@@ -33,7 +33,6 @@ const db = getFirestore(app);
 
 export class LoginComponent implements OnInit, OnDestroy {
   auth = getAuth(app);
-
   startTextAnimation: boolean = false;
   removeDNone: boolean = false;
   removeAnimatedContainer: boolean = false;
@@ -48,7 +47,6 @@ export class LoginComponent implements OnInit, OnDestroy {
   public getScreenHeight: any;
   under650Px: boolean = false;
   addTheUpperMargin: boolean = false;
-
   private destroy$ = new Subject<void>();
 
   signInForm = this.fb.group({
@@ -161,7 +159,7 @@ async signInWithGoogle() {
     })
 }
 
-  async createWelcomeMessage() {
+async createWelcomeMessage() {
   const welcomeMessage = new DirectMessage({
     yourMessage: false,
     createdBy: 'cyVi0JrZQebrLqR3bzU7DlQ3yey1',
@@ -205,7 +203,7 @@ async signInWithGoogle() {
   }
 }
 
-  async createUserDetailsDoc(result) {
+async createUserDetailsDoc(result) {
   await setDoc(doc(db, 'users', result.user.uid), {
     name: result.user.displayName,
     email: result.user.email,
@@ -215,7 +213,7 @@ async signInWithGoogle() {
   });
 }
 
-  async addUserToGeneralChannel() {
+async addUserToGeneralChannel() {
   const channelRef = doc(db, 'channels', '05Aha1jtwKOicFjTcYF5');
   await updateDoc(channelRef, {
     members: arrayUnion(this.auth.currentUser.uid),
@@ -238,7 +236,7 @@ async signIn() {
   });
 }
 
-  async signInAsGuest() {
+async signInAsGuest() {
   await signInWithEmailAndPassword(this.auth, 'guest@dabubble.com', '123456');
   this.router.navigateByUrl('');
 }

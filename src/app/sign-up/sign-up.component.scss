@@ -7,7 +7,6 @@
     align-items: flex-start;
     justify-content: center;
     gap: 30px;
-
 }
 
 .logo-container {
@@ -89,7 +88,6 @@
             outline: 2px solid #535af1;
         }
     }
-
 }
 
 .sign-up-form {
@@ -150,7 +148,6 @@
     width: 500px;
     align-items: center;
     justify-content: flex-end;
-
 }
 
 .next-btn {
@@ -180,12 +177,10 @@
     align-items: center;
     gap: 8px;
 
-
     label {
         width: 30px;
         height: 30px;
     }
-
 
     p {
         display: flex;
@@ -204,7 +199,6 @@
             cursor: pointer;
             transition: 0.1s ease-in-out;
         }
-
     }
 }
 
@@ -314,7 +308,6 @@
         line-height: 27px;
         letter-spacing: 0em;
         text-align: left;
-
     }
 
     .generic-profile-pic-list {
