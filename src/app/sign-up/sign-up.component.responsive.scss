@@ -163,12 +163,12 @@
 
     .picture-choice-container{
         width: 95% !important;
-        border-radius: unset;
     }
 
     .generic-profile-pic-list{
-        width: 100% !important;
+        width: 95% !important;
         justify-content: space-around;
+        flex-wrap: wrap;
          img{
             width: 44px !important;
             height: 44px !important;
@@ -179,13 +179,11 @@
         width: 95% !important;
     }
 
-/*     .personal-pic-upload-container{
-        width: 85%!important;
-        display: flex;
+    .personal-pic-upload-container{
+        width: 95%!important;
         flex-direction: column;
-        justify-content: space-between; 
-        gap: 0;
-    } */
+        gap: 1rem;
+    }
 
     .lower-links-container {
         gap: 0.5rem;
@@ -216,7 +214,7 @@
             margin-bottom: 0;
         }
         p {
-            font-size: 18px;
+            font-size: 16px;
         }
 
         .go-back-to-login-btn {
@@ -236,6 +234,14 @@
             padding: 14px 24px 14px 24px;
         }
     }
+
+    .picture-choice-container{
+        h1 {
+            font-size: 25px;
+            width: 70%;
+        }
+    }
+
 }
 
 @media (max-width: 320px) {
