@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { RouterModule } from '@angular/router';
 import { initializeApp } from 'firebase/app';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { getFirestore, collection, doc, setDoc, addDoc, updateDoc,arrayUnion} from 'firebase/firestore';
+import { getFirestore, collection, doc, setDoc, addDoc, updateDoc,arrayUnion, query, onSnapshot, getDoc, getDocs} from 'firebase/firestore';
 import { FormBuilder, ReactiveFormsModule, ValidationErrors, Validators} from '@angular/forms';
 import { getAuth, createUserWithEmailAndPassword, signOut, updateProfile} from 'firebase/auth';
 import { DirectMessage } from '../../models/directMessage.class';
@@ -35,7 +35,6 @@ const storage = getStorage();
 })
 export class SignUpComponent implements OnInit {
   auth = getAuth(app);
-
   first: boolean = true;
   second: boolean = false;
   person: string = 'zero';
@@ -52,7 +51,6 @@ export class SignUpComponent implements OnInit {
   public getScreenHeight: any;
   addTheUpperMargin: boolean = false;
 
-
   genericImg: string = '/assets/img/login/profile_generic_big.png';
   person1Img: string = '/assets/img/userImages/userImage1.svg';
   person2Img: string = '/assets/img/userImages/userImage2.svg';
@@ -66,6 +64,7 @@ export class SignUpComponent implements OnInit {
   storage = getStorage();
   filePath: string;
   isCustomImage: boolean = false;
+  showAlert: boolean = false;
 
   registerForm = this.fb.group({
     nameAndSurname: ['', Validators.required],
@@ -145,21 +144,54 @@ export class SignUpComponent implements OnInit {
     }
   }
 
-
   async signUp() {
-    await createUserWithEmailAndPassword(
-      this.auth,
-      this.registerForm.value.email,
-      this.registerForm.value.password
-    );
-    await updateProfile(this.auth.currentUser, {
-      displayName: this.registerForm.value.nameAndSurname,
-      photoURL: this.imgUrl,
+    let userEmailExists = this.registerForm.value.email; 
+    console.log("USER EMAIL", userEmailExists)
+    let userEmails = [];
+
+    const q = query(collection(db, 'users'));
+
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      if(userEmailExists == doc.data()['email']) {
+        userEmails.push(doc.data()['email']);
+      }
     });
-    await this.createUserDetailsDoc();
-    await this.addUserToGeneralChannel();
-    await this.createWelcomeMessage();
-    this.animateAndGoBackToLogin();
+
+/*     onSnapshot(q, (list) => {
+      list.forEach(element => {
+        if(userEmailExists == element.data()['email']) {
+          userEmails.push(userEmailExists);
+        }
+        console.log("EXISTING USER EMAIL", userEmails)
+
+      });
+    }); */
+
+    
+
+    if(userEmails.length == 0) {
+      await createUserWithEmailAndPassword(this.auth, this.registerForm.value.email, this.registerForm.value.password);
+      await updateProfile(this.auth.currentUser, {
+        displayName: this.registerForm.value.nameAndSurname,
+        photoURL: this.imgUrl,
+      });
+      await this.createUserDetailsDoc();
+      await this.addUserToGeneralChannel();
+      await this.createWelcomeMessage();
+      this.animateAndGoBackToLogin();
+
+    } else {
+      this.showFalseLoginAlert();
+    };
+    userEmails = [];
+  }
+
+  showFalseLoginAlert() {
+    this.showAlert = true;
+    setTimeout(() => {
+      this.showAlert = false;
+    }, 3000);
   }
 
   async createUserDetailsDoc() {

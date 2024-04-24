@@ -111,6 +111,18 @@
         font-size: 25px;
         padding: 25px;
     }
+
+    .bad-login-main {
+        padding: 20px;
+        font-size: 21px;
+        line-height: 30px;
+    } 
+}
+
+@media screen and (max-width: 480px) {
+    .bad-login-main {
+        right: unset;  
+    }
 }
 
 @media screen and (max-width: 450px) {
@@ -188,6 +200,13 @@
     .lower-links-container {
         gap: 0.5rem;
     }
+
+    .bad-login-main {
+        font-size: 18px;  
+        padding: 1rem;
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+    }
 }
 
 @media screen and (max-width: 400px) {
@@ -249,6 +268,10 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+    }
+
+    .bad-login-main {
+        font-size: 16px;  
     }
 }
 

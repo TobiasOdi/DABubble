@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, NonNullableFormBuilder, ReactiveFormsModule, Va
 import { initializeApp } from "firebase/app";
 import { Router } from '@angular/router';
 import { confirmPasswordReset, getAuth, sendPasswordResetEmail, verifyPasswordResetCode } from 'firebase/auth';
-import { getFirestore, collection, onSnapshot, query } from 'firebase/firestore';
+import { getFirestore, collection, onSnapshot, query, getDocs } from 'firebase/firestore';
 import { CustomValidators } from '../models/custom-validators';
 import { PassForm } from '../models/pass-form.model';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -129,13 +129,21 @@ export class PasswordResetComponent implements OnInit {
     let userEmails = [];
 
     const q = query(collection(db, 'users'));
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      if(userEmailExists == doc.data()['email']) {
+        userEmails.push(doc.data()['email']);
+      }
+    });
+
+/*     const q = query(collection(db, 'users'));
     onSnapshot(q, (list) => {
       list.forEach(element => {
         if(userEmailExists == element.data()['email']) {
           userEmails.push(element.data()['email']);
         }
       });
-    });
+    }); */
 
     if(userEmails.length == 0) {
       this.showFalseLoginAlert();

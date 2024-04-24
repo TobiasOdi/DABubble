@@ -76,7 +76,6 @@
 
     .or-container {
         width: 85% !important;
-        margin-bottom: 0px;
 
         img {
             width: 139px;
@@ -84,7 +83,6 @@
 
         p {
             text-align: center;
-            width: 80px;
             font-size: 17px;
             margin-top: 10px;
             margin-bottom: 20px;
@@ -182,6 +180,10 @@
         padding: 1rem;
         margin-left: 0.5rem;
         margin-right: 0.5rem;
+    }
+
+    .or-container {
+        width: 95%!important;
     }
 }
 
