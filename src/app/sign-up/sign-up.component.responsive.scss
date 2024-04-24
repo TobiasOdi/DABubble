@@ -79,8 +79,10 @@
     }
 
     .personal-pic-upload-container {
-        width: 358px;
+        width: 85%;
         margin-bottom: 0px;
+        justify-content: space-between;
+        gap: 0;
 
         p {
             font-size: 17px;
@@ -132,8 +134,8 @@
             flex-direction: column;
             align-items: center;
 
-            > div{
-                width: 100%;
+            > div:nth-of-type(5){
+                width: 95%;
             }
         }
 
@@ -151,7 +153,7 @@
     .error-message-container,
     .sign-up-hint,
     .sign-up-email-input,
-    .sign-up-password-input {
+    .sign-up-password-input-container {
         width: 95% !important;
     }
 
@@ -160,7 +162,7 @@
     }
 
     .picture-choice-container{
-        width: 100vw !important;
+        width: 95% !important;
         border-radius: unset;
     }
 
@@ -174,16 +176,16 @@
     }
 
     .picture-choice-info{
-        width: calc(100% - 20px) !important;
+        width: 95% !important;
     }
 
-    .personal-pic-upload-container{
-        width: calc(100% - 20px) !important;
-        gap: 10px !important;
+/*     .personal-pic-upload-container{
+        width: 85%!important;
         display: flex;
         flex-direction: column;
         justify-content: space-between; 
-    }
+        gap: 0;
+    } */
 
     .lower-links-container {
         gap: 0.5rem;
