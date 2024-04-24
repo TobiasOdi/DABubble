@@ -128,6 +128,13 @@
     }
 }
 
+.sign-up-password-input-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .sign-up-password-input {
     background: url('/assets/img/login/lock_gray.png') no-repeat scroll 7px 7px;
     padding-left: 60px !important;

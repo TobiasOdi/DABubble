@@ -8,19 +8,20 @@
     }
 
     .sign-up-form-container {
-        width: 95%!important;
+        width: 85%!important;
         height: unset;
         margin-left: 0;
 
         h1 {
             font-size: 30px;
+            width: 85%;
         }
 
         form {
-            width: 358px;
+            width: 85%;
 
             input {
-                width: 358px;
+                width: 100%;
             }
         }
     }
@@ -33,15 +34,15 @@
 
     .sign-up-hint {
         font-size: 17px;
-        width: 358px;
+        width: 85%;
     }
 
     .error-message-container {
-        width: 358px;
+        width: 85%;
     }
 
     .privacy-policy-container {
-        width: 358px;
+        width: 100%;
     }
 
     .go-back-to-login-btn {
@@ -50,7 +51,7 @@
     }
 
     .sign-up-btns-container {
-        width: 358px;
+        width: 85%;
     }
 
     .picture-choice-container {
@@ -64,7 +65,7 @@
     }
 
     .picture-choice-info {
-        width: 358px;
+        width: 85%;
     }
 
     .generic-profile-pic-list {
@@ -116,8 +117,6 @@
         gap: 30px;
         width: 100vw;
         height: auto;
-        padding-top: 30px;
-        padding-bottom: 30px;
     }
 
     .go-back-to-login-btn {
@@ -125,13 +124,19 @@
     }
 
     .sign-up-form-container {
+        width: 95% !important;
 
         form {
             width: 100% !important;
             display: flex;
             flex-direction: column;
             align-items: center;
+
+            > div{
+                width: 100%;
+            }
         }
+
     }
 
     .login-input-main {
@@ -145,16 +150,12 @@
     .sign-up-btns-container,
     .error-message-container,
     .sign-up-hint,
-    .sign-up-email-input {
-        width: calc(100% - 20px) !important;
-    }
-
-    .sign-up-password-input{
-        width: 100% !important;
+    .sign-up-email-input,
+    .sign-up-password-input {
+        width: 95% !important;
     }
 
     .privacy-policy-container{
-        width: calc(100% - 20px) !important;
         font-size: 14px;
     }
 
@@ -182,6 +183,10 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between; 
+    }
+
+    .lower-links-container {
+        gap: 0.5rem;
     }
 }
 
@@ -230,3 +235,13 @@
         }
     }
 }
+
+@media (max-width: 320px) {
+    .lower-links-container {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+
