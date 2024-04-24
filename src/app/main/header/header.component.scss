@@ -32,6 +32,7 @@
     font-weight: 400;
     padding-left: 45px;
     padding-right: 45px;
+    width: 100%;
 
     img {
         height: 26px;
@@ -153,6 +154,9 @@
     margin-left: 144px;
     max-width: 989px;
     position: relative;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 .left-middle-header {
@@ -403,6 +407,24 @@
     .left-header {
         h1 {
             display: block;
+        }
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .header{
+        padding: 1rem;
+        margin: 0;
+
+        img {
+            width: 50px;
+            height: 50px;
+        }
+    }
+
+    .left-header-mobile {
+        div {
+            font-size: 18px;
         }
     }
 }
