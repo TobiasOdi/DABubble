@@ -63,6 +63,8 @@ export class HeaderComponent implements OnInit {
   showDropdownMenu: boolean = false;
   inputValue: string = ''; // Initialisierung der Variable
   searchBarActive: boolean = true;
+  showMobileViewLine: boolean = false;
+  showMobileSlider: boolean = false;
 
   /* firebaseConfig = {
     apiKey: 'AIzaSyC520Za3P8qTUGvWM0KxuYqGIMaz-Vd48k',
@@ -150,6 +152,7 @@ export class HeaderComponent implements OnInit {
   toggleOverlay(active: boolean) {
     this.isOverlayActive = active;
     this.showDropdownMenu = active;
+    this.showMobileSlider = false;
   }
 
   /**
@@ -157,9 +160,15 @@ export class HeaderComponent implements OnInit {
    * @param {boolean} active - Determines whether to activate or deactivate the dropdown menu.
    */
   toggleDropdownMenu(active: boolean) {
-    this.serviceProfilCard.getTheLoggedInUser();
-    this.showDropdownMenu = active;
-    // this.isOverlayActive = active;
+    if(window.innerWidth <= 500) {
+      this.showMobileSlider = true;
+      console.log("MIBLE SLIDER VALUE", this. showMobileSlider)
+    } 
+
+      this.serviceProfilCard.getTheLoggedInUser();
+      this.showDropdownMenu = active;
+      // this.isOverlayActive = active;  
+    
     if (!this.serviceProfilCard.isProfilCardActive) {
       this.serviceProfilCard.isOverlayActive = active;
     }

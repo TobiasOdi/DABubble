@@ -308,3 +308,29 @@
 .icon-and-title-disabled{
     color: #9f9f9f;
 }
+
+/* ============== RESPONSIVENESS ================ */
+@media(max-width: 560px) {
+    .cardContainer.topRight {
+        border-radius: 30px 30px 30px 30px;
+        position: unset;
+        right: unset;
+        top: unset;
+        // height: 600px;
+    }
+    
+    .cardContainer {
+        width: 95%;
+    }
+}
+
+@media(max-width: 420px) {
+    .cardContainer.topRight {
+        padding: 1.5rem;
+
+        div {
+            word-wrap: break-word;
+        }
+    }
+}
+

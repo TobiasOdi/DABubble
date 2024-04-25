@@ -71,9 +71,23 @@
             <img class="header-profile-photo" src={{serviceProfilCard.headerProfilePic}}>
         <mat-icon class="material-symbols-outlined" fontIcon="expand_more"></mat-icon>
 
-        <div [class.active]="showDropdownMenu" class="custom-dropdown-menu">
-            <div (click)="serviceProfilCard.toggleProfilCard(true, true, '')">Profil</div>
-            <div (click)="signOut()">Log out</div>
+        <div [class.active]="showDropdownMenu" class="custom-dropdown-menu" *ngIf="!showMobileSlider">
+            <div (click)="serviceProfilCard.toggleProfilCard(true, true, '')" class="profil">Profil</div>
+            <div (click)="signOut()" class="logOut">Log out</div>
+        </div>
+
+        <div [class.active]="showDropdownMenu" class="custom-dropdown-menu mobile" *ngIf="showMobileSlider">
+            <div class="mobileViewLine">
+                <div></div>
+            </div>
+            <div (click)="serviceProfilCard.toggleProfilCard(true, true, '')" class="profil">
+                <img src="/assets/img/logout.svg" alt="">
+                <div>Profil</div>
+            </div>
+            <div (click)="signOut()" class="logOut">
+                <img src="/assets/img/account_circle.svg" alt="">
+                <div>Log out</div>           
+            </div>
         </div>
     </div>
 </div>

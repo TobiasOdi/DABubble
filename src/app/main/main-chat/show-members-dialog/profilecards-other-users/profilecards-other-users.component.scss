@@ -263,6 +263,16 @@
 /* =========================== RESPONSIVENESS =========================== */
 @media(max-width: 500px) {
     .cardContainer {
-        width: 90%;
+        width: 95%;
+    }
+}
+
+@media(max-width: 420px) {
+    .cardContainer {
+        padding: 1.5rem;
+
+        div {
+            word-wrap: break-word;
+        }
     }
 }
