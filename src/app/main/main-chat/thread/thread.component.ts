@@ -50,7 +50,7 @@ export class ThreadComponent implements OnInit, OnChanges {
       if(valueChannel !== null) {
         this.activeChannelId = valueChannel;
         this.activeDmUser = null;
-        this.getMessageCountAndAnswer();
+        //this.getMessageCountAndAnswer();
       }
     });
       
@@ -176,7 +176,6 @@ export class ThreadComponent implements OnInit, OnChanges {
     const q = query(messagesRef, orderBy('creationDate', 'desc')); 
     onSnapshot(q, (snapshot) => {
     this.messageCount = snapshot.docs.length;
-    console.log('Message count', this.messageCount)
     this.formatMessageCount();
     if(this.messageCount > 0) {
       const lastMessageTimestamp = snapshot.docs[0].data()['creationDate'];

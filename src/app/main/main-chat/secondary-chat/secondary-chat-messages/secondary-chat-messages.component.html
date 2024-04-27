@@ -84,11 +84,12 @@
             </app-reaction-emoji-input>
         </div>
         }
-
-        <div class="action-bar" (click)="openMoreEmojisToolbar()">
-            <button class="add-reaction"></button>
-        </div>
     </div>
+    
+    <div class="action-bar" (click)="openMoreEmojisToolbar()">
+        <button class="add-reaction"></button>
+    </div>
+
     <app-reaction-emoji-input class="reactionOtherMessagesActionbar" *ngIf="showMoreEmojisToolbar"
         [showMoreEmojis]="showMoreEmojis" (showMoreEmojisChild)="closeMoreEmojis(showMoreEmojis)"
         [reactionCollectionPath]="reactionCollectionPath" [currentUser]="currentUser" [reactions]="reactions"
@@ -181,8 +182,8 @@
             </app-reaction-emoji-input>
         </div>
         }
-
     </div>
+
     <div class="own-action-bar">
         <button class="add-reaction" (click)="openMoreEmojisToolbar()" alt=""></button>
         <button class="options" (click)="openEditOwnMessageField()" alt="Optionen"></button>

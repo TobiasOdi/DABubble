@@ -358,7 +358,8 @@ app-thread {
     .mainChatInput {
         padding: 1rem;
     }
-    app-channel-edition-dialog {
+
+     app-channel-edition-dialog {
         position: fixed;
         top: 0px;
         left: 0px;
@@ -367,12 +368,20 @@ app-thread {
         width: 100%;
     }
 
-
     .mainChatHeaderLeft  {
         > div,
         > div > mat-icon {
-            font-size: 27px;
+            font-size: 22px;
         }
     }
 
+    .beginningOfChannel {
+        > div:last-of-type > div {
+            font-size: 18px;
+        }
+
+        > div:first-of-type > div {
+            font-size: 22px;
+        }
+    }
 }

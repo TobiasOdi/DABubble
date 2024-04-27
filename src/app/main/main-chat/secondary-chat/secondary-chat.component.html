@@ -81,8 +81,10 @@
 
       <div class="answer-line-container">
         <!-- Marker for seperate thread quiry to answers -->
-        <p>{{ threadMessages.length }} Antworten</p>
-        <div class="purple-line"></div>
+        <div>
+          <p>{{ threadMessages.length }} Antworten</p>
+          <div class="purple-line"></div>  
+        </div>
       </div>
       @for (message of threadMessages; track $index) {
       <!-------------------- Template of awnsers ------------------------>

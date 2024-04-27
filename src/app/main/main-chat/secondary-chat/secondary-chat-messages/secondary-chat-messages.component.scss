@@ -12,13 +12,17 @@ $bg-color: #ECEEFE;
     padding: 10px 20px;
     margin: 4px 0;
     transition: all 125ms ease-in-out;
+    gap: 1rem;
 
     .profile-picture {
         height: 70px;
         width: 70px;
         aspect-ratio: 1 / 1;
         border-radius: 100%;
-        margin: 0 10px;
+    }
+
+    > div {
+        width: 100%;
     }
 
     > .main-message-content {
@@ -71,6 +75,7 @@ $bg-color: #ECEEFE;
         }
 
         .own-action-bar {
+            left: 44px;
             opacity: 1;
         }
     }
@@ -114,12 +119,12 @@ $bg-color: #ECEEFE;
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
-    max-width: calc(315px - 30px);
+    max-width: 50%;
     width: fit-content;
     background-color: $bg-color;
     padding: 15px;
     border-radius: 0px 20px 20px 20px;
-    white-space: pre-wrap;
+    word-break: break-all;
 
     span {
         font-size: 18px;
@@ -187,16 +192,16 @@ $bg-color: #ECEEFE;
 
 .own-action-bar {
     position: absolute;
-    left: 44px;
+    left: -80px;
     opacity: 0;
     top: -12px;
     display: flex;
     justify-content: center;
     align-items: center;
     border: 1px solid $light-purple;
-    width: 100px;
+    width: 100px!important;
     height: 44px;
-    border-radius: 24px 24px 0px 24px;
+    border-radius: 24px 24px 24px 0px;
     background-color: white;
     transition: all 125ms ease-in-out;
 
@@ -250,7 +255,7 @@ $bg-color: #ECEEFE;
     justify-content: center;
     align-items: center;
     border: 1px solid $light-purple;
-    width: 62px;
+    width: 62px!important;
     height: 44px;
     border-radius: 24px 24px 0px 24px;
     background-color: white;
@@ -464,8 +469,16 @@ $bg-color: #ECEEFE;
 } */
 
 /* ===================== RESPONSIVENESS =================== */
+@media(max-width: 820px){
+    .thread-message {
+        max-width: 70%;
+    }
+}
+
 @media(max-width: 500px){
     .thread-message {
+        max-width: 100%;
+
         .imgMessage {
            > img {
             max-height: 100px;
@@ -473,4 +486,13 @@ $bg-color: #ECEEFE;
             }
         }
     }
+
+    .user-message {
+        gap: 10px;
+        .profile-picture {
+            height: 50px;
+            width: 50px;
+        }
+    }
 }
+
