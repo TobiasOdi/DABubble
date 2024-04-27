@@ -563,3 +563,18 @@
         }
     }
 }
+
+@media screen and (max-width: 400px) {
+    .left-header {
+        gap: 0.5rem;
+        img {
+            height: 45px;
+            width: 45px;
+        }
+
+        h1 {
+            font-size: 22px;
+        }
+    }
+}
+

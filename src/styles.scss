@@ -2,7 +2,7 @@
 
 * {
   font-family: "Nunito", sans-serif;
-  hyphens: auto;
+  //hyphens: auto;
 }
 
 $purple1: rgb(68, 77, 242);
@@ -97,7 +97,7 @@ emoji-mart {
     left: 0;
 
     .emoji-mart {
-      max-width: calc(100vw - 32px) !important;
+      max-width: calc(100vw - 32px);
     }
   }
 }
@@ -107,5 +107,11 @@ emoji-mart {
   ::-webkit-scrollbar {
     width: 0px;
     display: none;
+  }
+}
+
+@media(max-width: 400px) {
+  emoji-mart .emoji-mart {
+    width: 270px!important;
   }
 }

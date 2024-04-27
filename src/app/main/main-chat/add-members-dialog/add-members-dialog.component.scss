@@ -256,3 +256,14 @@
         padding: 20px;
     }
 }
+
+@media(max-width: 340px) {
+    .addMembersDialog {
+        width: 260px;
+    }   
+
+    .userList {
+        width: 248px;
+    }
+
+}

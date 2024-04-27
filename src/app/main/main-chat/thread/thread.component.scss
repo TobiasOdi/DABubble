@@ -15,7 +15,7 @@
 
 .messageContainer > app-reaction-emoji-input {
     position: absolute;
-    right: 395px;
+    right: 385px;
     top: 20px;
     height: 46px;
     z-index: 10;
@@ -67,6 +67,7 @@
         height: 70px;
         width: 70px;
         border-radius: 50%;
+        object-fit: cover;
     }
 }
 
@@ -124,13 +125,15 @@
             align-items: center;
             border: 4px solid white;
             border-radius: 10px;
+            object-fit: cover;
+
             > img {
-             min-height: 100px;
-             min-width: 100px;
-             max-height: 200px;
-             max-width: 200px;
-             border-radius: 10px;
-             object-fit: contain;
+                min-height: 100px;
+                min-width: 100px;
+                max-height: 200px;
+                max-width: 200px;
+                border-radius: 10px;
+                object-fit: cover;
              } 
      
              &:hover .imgInteraction {
@@ -230,12 +233,15 @@
             align-items: center;
             border: 4px solid white;
             border-radius: 10px;
+            object-fit: cover;
+
             > img {
-             min-height: 100px;
-             min-width: 100px;
-             max-height: 200px;
-             max-width: 200px;
-             border-radius: 10px;
+                min-height: 100px;
+                min-width: 100px;
+                max-height: 200px;
+                max-width: 200px;
+                border-radius: 10px;
+                object-fit: cover;
              } 
      
              &:hover .imgInteraction {
@@ -482,7 +488,6 @@
     position: absolute;
     top: 17px;
     left: 200px;
-    height: 67px;
     border-radius: 0px 30px 30px 30px;
     padding: 10px 20px 10px 20px;
     box-shadow: 0 6px 14px 0 rgba(0, 0, 0, 0.2);
@@ -529,7 +534,7 @@
     background-color: white;
     border: 1px solid $lightPurple;
     border-radius: 20px;
-    padding: 20px;
+    padding: 15px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -648,6 +653,10 @@
         padding: 1rem;
     }
 
+    .messageContainer > app-reaction-emoji-input {
+       right: 355px;
+    }
+
     .mainThreadReactions,
     .mainThreadReactionsOwn {
         > .reactionContainer {
@@ -655,6 +664,14 @@
                 display: none;
             }
         }
+    }
+
+    .mainThreadReactions .reactionContainerMoreEmojisOther {
+        left: -56px;
+    }
+
+    .messageContainer > app-reaction-emoji-input {
+        right: 355px;
     }
 
     .mainMessageThreads {
@@ -682,15 +699,56 @@
             max-width: 100px;
         }
     }
-
-    .messageContainer > app-reaction-emoji-input {
-        right: 305px;
-    }
-    
+   
     .messageContainerOwn > app-reaction-emoji-input {
         left: 15px;
     }
 }
+
+@media(max-width: 400px) {
+    .messageContainer > app-reaction-emoji-input {
+        right: 288px;
+    }
+}
+
+@media (max-width: 380px) {
+    .editMessagePopup {
+        left: 45px;
+    }
+    
+    .messageContainerOwn:hover > .toolBarOwn {
+        left: 12px;
+        opacity: 1;
+        gap: 0;
+    }
+}
+
+
+@media (max-width: 360px) {
+    .messageContainer:hover > .toolBar {
+        opacity: 1;
+        right: 12px;
+        gap: 0;
+    }
+    
+    .messageContainerOwn:hover > .toolBarOwn {
+        left: 12px;
+        opacity: 1;
+        gap: 0;
+    }
+}
+
+@media (max-width: 320px) {
+    .editMessagePopup {
+        left: 25px;
+    }
+}
+
+
+
+
+
+
 
 
 

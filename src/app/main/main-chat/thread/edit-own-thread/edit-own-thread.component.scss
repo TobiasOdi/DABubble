@@ -15,7 +15,7 @@
     background-color: white;
     border: 1px solid $lightPurple;
     border-radius: 20px;
-    padding: 20px;
+    padding: 15px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -203,4 +203,15 @@ emoji-mart {
             width: 50px;
         }
     }   
+}
+
+@media(max-width: 500px) {
+    .mainMessageOwnEdit > .messageOwnEditBottom  > .mainChatButtons {  
+        gap: 0.5rem;
+        > button {
+            font-size: 13px;
+            padding: 6px;
+            border-radius: 20px;
+        }      
+    }
 }

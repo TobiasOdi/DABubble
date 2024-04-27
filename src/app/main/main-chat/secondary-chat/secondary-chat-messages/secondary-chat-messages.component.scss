@@ -22,7 +22,7 @@ $bg-color: #ECEEFE;
     }
 
     > div {
-        width: 100%;
+        max-width: 100%;
     }
 
     > .main-message-content {
@@ -283,8 +283,8 @@ $bg-color: #ECEEFE;
 
 .edit-message {
     position: absolute;
-    left: 130px;
-    top: -4px;
+    left: 92px;
+    top: 30px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -493,6 +493,19 @@ $bg-color: #ECEEFE;
             height: 50px;
             width: 50px;
         }
+    }
+}
+
+@media(max-width: 360px){
+    .edit-message {
+        left: 45px;
+    }
+}
+
+@media(max-width: 320px){
+    .edit-message {
+        left: 25px;
+        border-radius: 24px;
     }
 }
 
