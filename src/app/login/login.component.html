@@ -30,7 +30,7 @@
             <div class="login-input-main">
                 <input type="text" class="login-email-input" name="email" id="login_email"
                     placeholder="beispielname@email.com" formControlName="email" (focus)="showEmailErrorDiv = true"
-                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" (keyup.enter)="signIn()">
                 <div class="error-message-container" [class.visible]="showEmailErrorDiv">
                     <mat-error *ngIf="signInForm.controls.email.invalid">
                         {{ checkErrors('email') }}
@@ -40,7 +40,7 @@
 
             <div class="login-input-main">
                 <input [type]="type" class="login-password-input" name="password" id="login_password"
-                    placeholder="Passwort" formControlName="password" (focus)="showPasswordErrorDiv = true">
+                    placeholder="Passwort" formControlName="password" (focus)="showPasswordErrorDiv = true" (keyup.enter)="signIn()">
                 <span (click)="togglePasswordVisibility()" class="the-eye"
                     [ngClass]="{'visibility_on': isText, 'visibility_off': !isText }"></span>
                 <div class="error-message-container" [class.visible]="showPasswordErrorDiv">

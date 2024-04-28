@@ -194,6 +194,7 @@ export class HeaderComponent implements OnInit {
       updateDoc(userRef, {
         isOnline: false,
       });
+      this.chatService.activeChannelId = null;
       await this.auth.signOut();
       this.router.navigateByUrl('login');
       this.serviceProfilCard.isOverlayActive = false;
