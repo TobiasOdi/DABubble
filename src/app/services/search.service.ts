@@ -51,7 +51,7 @@ export class SearchService {
     return onSnapshot(q, (list) => {
       list.forEach(element => {
         let compare = element.data()['name'].toLowerCase();
-        let result = element.data();
+        let result = element.data()['id'];
         if (compare.includes(input.slice(1).toLowerCase())) {
           this.searchUserResult.push(result);
         }

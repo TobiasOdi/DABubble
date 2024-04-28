@@ -59,6 +59,7 @@ export class ProfilCardService {
    * @param userId - The ID of the user whose profile card is being toggled.
    */
   toggleProfilCard(active: boolean, currentUser: boolean, userId: string) {
+    console.log("USER ID", userId);
     if (!this.isOverlayActive) {
       this.isOverlayActive = true;
     }
@@ -71,7 +72,7 @@ export class ProfilCardService {
         let userData = element.data();
         this.userNameandSurname = userData['name'];
         this.userEmailAddress = userData['email'];
-        this.profilePic = userData['imgUrl']
+        this.headerProfilePic = userData['imgUrl']
       })
     }
   }
