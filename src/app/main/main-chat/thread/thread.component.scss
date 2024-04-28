@@ -414,9 +414,9 @@
         z-index: 10;
     }
 
-    .reactionContainerMoreEmojisOwn{
+    .reactionContainerMoreEmojisOwn {
         position: absolute;
-        right: 495px;
+        right: 486px;
         bottom: -15px;
         height: 46px;
         z-index: 10; 
@@ -628,6 +628,12 @@
     }
 }
 
+@media(max-width: 570px) {
+    .mainThreadReactions > .reactionContainerMoreEmojisOwn {
+        right: 380px;  
+    }
+}
+
 @media(max-width: 500px) {
     .editMessagePopup {
         left: 90px;
@@ -709,6 +715,10 @@
     .messageContainer > app-reaction-emoji-input {
         right: 288px;
     }
+
+    .mainThreadReactions > .reactionContainerMoreEmojisOwn {
+        right: 285px;  
+    }
 }
 
 @media (max-width: 380px) {
@@ -741,6 +751,10 @@
 @media (max-width: 320px) {
     .editMessagePopup {
         left: 25px;
+    }
+
+    .mainThreadReactions > .reactionContainerMoreEmojisOwn {
+        right: 270px;  
     }
 }
 

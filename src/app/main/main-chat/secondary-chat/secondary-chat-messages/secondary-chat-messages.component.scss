@@ -47,8 +47,8 @@ $bg-color: #ECEEFE;
 
     .reactionOtherMessagesActionbar {
         position: absolute;
-        left: 55px;
-        top: 30px;
+        right: 385px;
+        top: 5px;
     }
 
     .reactionOwnMessagesToolbar {
@@ -365,6 +365,10 @@ $bg-color: #ECEEFE;
             display: block;
         }
 
+        &:hover .reactionHoverBubbleOwn {
+            display: block;
+        }
+
         .ractionEmoji {
             display: flex;
             justify-content: center;
@@ -410,6 +414,35 @@ $bg-color: #ECEEFE;
                 font-weight: 400;
             }
         }
+
+        .reactionHoverBubbleOwn {
+            position: absolute;
+            top: -105px;
+            left: -150px;
+            display: none;
+            width: 158px;
+            border-radius: 30px 30px 0px 30px;
+            padding: 15px 10px 15px 10px;
+            background-color: $purple1;
+            z-index: 2;
+            > div {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+           
+            > div:nth-of-type(2) {
+                color: white;
+                font-weight: 700;
+                font-size: 18px;
+            }
+            > div:last-of-type {
+                color: white;
+                font-size: 16px;
+                font-weight: 400;
+            }
+        }
     }
 
     > .reactionOtherMessages {
@@ -420,15 +453,20 @@ $bg-color: #ECEEFE;
 
     > .reactionOwnMessages {
         position: absolute;
-        right: 380px;
-        bottom: 25px;
+        right: 338px;
+        bottom: 17px;
 
     }
 }
 
 .mainThreadReactionsOwn {
-    flex-direction: row-reverse;
+    flex-direction: row-reverse;   
 }
+
+/* .mainThreadReactionsOwn > .reactionContainer > .ractionHoverBubble {
+    left: -150px!important;
+    border-radius: 30px 30px 30px 0!important;
+}  */
 
 // --------------------------------- Image Message ---------------------------------
 
@@ -494,6 +532,42 @@ $bg-color: #ECEEFE;
             width: 50px;
         }
     }
+
+    .reactionHoverBubble,
+    .reactionHoverBubbleOwn {
+        display: none!important;
+
+        &:hover {
+            display: none!important;
+        }
+    }
+}
+
+@media(max-width: 440px){
+    .mainThreadReactions > .reactionOtherMessages {
+        left: -68px;
+    }
+
+    .mainThreadReactionsOwn {
+        .reactionOwnMessages {
+            right: 270px;
+        }
+    }
+}
+
+@media(max-width: 400px){
+    .user-message {
+        .reactionOtherMessagesActionbar {
+            position: absolute;
+            right: 285px;
+        }
+    }
+
+    .mainThreadReactionsOwn {
+        .reactionOwnMessages {
+            right: 210px;
+        }
+    }
 }
 
 @media(max-width: 360px){
@@ -507,5 +581,27 @@ $bg-color: #ECEEFE;
         left: 25px;
         border-radius: 24px;
     }
+
+    .user-message {
+        .reactionOwnMessagesToolbar {
+            left: 15px;
+        }
+    }
+
+    .mainThreadReactionsOwn {
+        .reactionOwnMessages {
+            right: 195px;
+        }
+    }
 }
+
+@media(max-width: 300px){
+    .user-message {
+        .reactionOtherMessagesActionbar {
+            position: absolute;
+            right: 270px;
+        }
+    }
+}
+
 
