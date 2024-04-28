@@ -66,17 +66,19 @@
         </div>
     </div>
 
-    <div (click)="toggleDropdownMenu(!showDropdownMenu)" class="header-profil">
+    <div (click)="toggleDropdownMenu(!showDropdownMenu || !showDropdownMenuMobile)" class="header-profil">
         <h2>{{serviceProfilCard.headerUserNameandSurname}}</h2>
             <img class="header-profile-photo" src={{serviceProfilCard.headerProfilePic}}>
         <mat-icon class="material-symbols-outlined" fontIcon="expand_more"></mat-icon>
 
-        <div [class.active]="showDropdownMenu" class="custom-dropdown-menu" *ngIf="!showMobileSlider">
+        <!-- [class.active]="showDropdownMenu" -->
+        <div class="custom-dropdown-menu" *ngIf="showDropdownMenu">
             <div (click)="serviceProfilCard.toggleProfilCard(true, true, '')" class="profil">Profil</div>
             <div (click)="signOut()" class="logOut">Log out</div>
         </div>
 
-        <div [class.active]="showDropdownMenu" class="custom-dropdown-menu mobile" *ngIf="showMobileSlider">
+        <!-- [class.active]="showDropdownMenuMobile" -->
+        <div class="custom-dropdown-menu mobile" *ngIf="showDropdownMenuMobile">
             <div class="mobileViewLine">
                 <div></div>
             </div>

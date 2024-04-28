@@ -61,6 +61,7 @@ export class HeaderComponent implements OnInit {
   currentUserProfil: boolean = false;
   showProfil: boolean = false;
   showDropdownMenu: boolean = false;
+  showDropdownMenuMobile: boolean = false;
   inputValue: string = ''; // Initialisierung der Variable
   searchBarActive: boolean = true;
   showMobileViewLine: boolean = false;
@@ -89,6 +90,7 @@ export class HeaderComponent implements OnInit {
     this.serviceProfilCard.isProfilCardActiveChanged.subscribe(
       (isActive: boolean) => {
         this.showDropdownMenu = isActive; // Update local variable when service variable changes
+        this.showDropdownMenuMobile = isActive; // Update local variable when service variable changes
       }
     );
 
@@ -150,9 +152,14 @@ export class HeaderComponent implements OnInit {
    * @param {boolean} active - Determines whether to activate or deactivate the overlay and dropdown menu.
    */
   toggleOverlay(active: boolean) {
-    this.isOverlayActive = active;
-    this.showDropdownMenu = active;
-    this.showMobileSlider = false;
+    if(window.innerWidth <= 500) {
+      this.isOverlayActive = active;
+      this.showDropdownMenuMobile = active;
+    } else {
+      this.isOverlayActive = active;
+      this.showDropdownMenu = active;
+      //this.showMobileSlider = false;
+    }
   }
 
   /**
@@ -161,13 +168,14 @@ export class HeaderComponent implements OnInit {
    */
   toggleDropdownMenu(active: boolean) {
     if(window.innerWidth <= 500) {
-      this.showMobileSlider = true;
-      console.log("MIBLE SLIDER VALUE", this. showMobileSlider)
-    } 
-
+      this.serviceProfilCard.getTheLoggedInUser();
+      this.showDropdownMenuMobile = active;
+    } else {
       this.serviceProfilCard.getTheLoggedInUser();
       this.showDropdownMenu = active;
       // this.isOverlayActive = active;  
+
+    }
     
     if (!this.serviceProfilCard.isProfilCardActive) {
       this.serviceProfilCard.isOverlayActive = active;
