@@ -101,6 +101,8 @@ export class MainChatComponent implements OnInit, OnDestroy {
         setTimeout(() => {
           this.scrollToBottom();
         }, 500);
+
+        console.log("CHANNEL ID", this.activeChannelId)
       }
     });
       
