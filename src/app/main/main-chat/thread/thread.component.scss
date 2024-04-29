@@ -109,13 +109,13 @@
         //max-width: 50%;
 
         .mainMessageMessage {
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
+            display: inline-block;
             font-size: 18px;
             font-weight: 400;
             width: 100%;
             overflow-wrap: break-word;
+            word-wrap: break-word;
+            word-break: break-word;  
         }
 
         .imgMessage {
@@ -218,12 +218,12 @@
 
 
         .mainMessageMessage {
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
+            display: inline-block;
             font-size: 18px;
             font-weight: 400;
-            word-break: break-all;
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+            word-break: break-word;  
         }
 
         .imgMessage {

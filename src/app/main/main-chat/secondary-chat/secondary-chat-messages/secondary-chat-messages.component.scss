@@ -123,13 +123,14 @@ $bg-color: #ECEEFE;
     background-color: $bg-color;
     padding: 15px;
     border-radius: 0px 20px 20px 20px;
-    word-break: break-all;
 
     span {
         font-size: 18px;
         font-weight: 400;
         width: 100%;
         overflow-wrap: break-word;
+        word-wrap: break-word;
+        word-break: break-word;
     }
 
     .imgMessage {
