@@ -1,3 +1,6 @@
+<div (click)="serviceProfilCard.toggleCardOverlay(false)" [class.activeHeader]="serviceProfilCard.isOverlayDropdownActive" class="overlay">
+</div>
+
 <div (click)="serviceProfilCard.toggleCardOverlay(false)" [class.active]="serviceProfilCard.isOverlayActive" class="overlay">
     <div (click)="$event.stopPropagation()" [class.topRight]="serviceProfilCard.isCurrentUserActive"
         *ngIf="serviceProfilCard.isProfilCardActive" class="cardContainer">
@@ -19,7 +22,7 @@
         </div>
 
         <div class="imgContainer">
-            <img src={{serviceProfilCard.headerProfilePic}}>
+            <img src={{serviceProfilCard.profilePic}}>
         </div>
 
         <div *ngIf="!edit">

@@ -176,9 +176,8 @@ export class HeaderComponent implements OnInit {
       // this.isOverlayActive = active;  
 
     }
-    
     if (!this.serviceProfilCard.isProfilCardActive) {
-      this.serviceProfilCard.isOverlayActive = active;
+      this.serviceProfilCard.isOverlayDropdownActive = active;
     }
   }
 

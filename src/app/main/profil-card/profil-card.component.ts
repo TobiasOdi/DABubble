@@ -47,7 +47,7 @@ export class ProfilCardComponent implements OnInit {
         this.userNameandSurname = user.displayName;
         this.userEmailAddress = user.email;
       } else {
-        this.profilePic = '/assets/img/login/profile_generic_big.png';
+        this.profilePic = 'https://firebasestorage.googleapis.com/v0/b/dabubble-2a0d1.appspot.com/o/profileImages%2Fprofile_generic_big.png?alt=media&token=21d6596f-09e9-402b-8191-db3ad0f77b26';
         this.userNameandSurname = 'Max Mustermann';
         this.userEmailAddress = 'maxmustermann@gmail.com'
       }

@@ -16,7 +16,12 @@
 }
 
 .overlay.active {
-    z-index: 999;
+    z-index: 200;
+    opacity: 1;
+}
+
+.overlay.activeHeader {
+    z-index: 100;
     opacity: 1;
 }
 
@@ -29,7 +34,7 @@
 }
 
 .cardContainer {
-    z-index: 1000;
+    z-index: 210;
     background-color: white;
     display: flex;
     flex-direction: column;

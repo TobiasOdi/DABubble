@@ -27,6 +27,7 @@ export class ProfilCardService {
 
   isProfilCardActive: boolean = false;
   isOverlayActive: boolean = false;
+  isOverlayDropdownActive: boolean = false;
   isCurrentUserActive: boolean;
   isProfilCardActiveChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
 
@@ -46,6 +47,7 @@ export class ProfilCardService {
    */
   toggleCardOverlay(active: boolean) {
     this.isOverlayActive = active;
+    this.isOverlayDropdownActive = active;
     this.isProfilCardActiveChanged.emit(active); // Emit event when the variable changes
     if (this.isProfilCardActive) {
       this.isProfilCardActive = false;
@@ -59,8 +61,7 @@ export class ProfilCardService {
    * @param userId - The ID of the user whose profile card is being toggled.
    */
   toggleProfilCard(active: boolean, currentUser: boolean, userId: string) {
-    console.log("USER ID", userId);
-    if (!this.isOverlayActive) {
+     if (!this.isOverlayActive) {
       this.isOverlayActive = true;
     }
     this.isProfilCardActive = active;
@@ -72,10 +73,38 @@ export class ProfilCardService {
         let userData = element.data();
         this.userNameandSurname = userData['name'];
         this.userEmailAddress = userData['email'];
-        this.headerProfilePic = userData['imgUrl']
+        this.profilePic = userData['imgUrl']
       })
     }
   }
+ 
+  toggleProfilCardHeader(active: boolean, currentUser: boolean, userId: string) {
+    if (!this.isOverlayDropdownActive) {
+     this.isOverlayDropdownActive = true;
+   }
+   this.isProfilCardActive = active;
+   this.isCurrentUserActive = currentUser;
+   if (currentUser == false) {
+     this.otherUserId = userId;
+     let userDocRef = doc(this.userRef, userId);
+     onSnapshot(userDocRef, (element) => {
+       let userData = element.data();
+       this.userNameandSurname = userData['name'];
+       this.userEmailAddress = userData['email'];
+       this.profilePic = userData['imgUrl']
+     })
+   }
+ }
+
+
+
+
+
+
+
+
+
+
 
   /**
   * Updates the header with the provided name.
@@ -107,18 +136,23 @@ export class ProfilCardService {
   getTheLoggedInUser() {
     this.authSubscription = this.auth.onAuthStateChanged((user) => {
       if(user) {
-        this.profilePic = user.photoURL;
         if(this.auth.currentUser.uid == 'X9APNd1z7yVsW7sP3kyVk79DHWo1') {
-          this.headerProfilePic = 'assets/img/login/profile_generic_big.png';
+          this.headerProfilePic = 'https://firebasestorage.googleapis.com/v0/b/dabubble-2a0d1.appspot.com/o/profileImages%2Fprofile_generic_big.png?alt=media&token=21d6596f-09e9-402b-8191-db3ad0f77b26g';
+          this.profilePic = 'https://firebasestorage.googleapis.com/v0/b/dabubble-2a0d1.appspot.com/o/profileImages%2Fprofile_generic_big.png?alt=media&token=21d6596f-09e9-402b-8191-db3ad0f77b26g';
+          this.userNameandSurname = 'Gast';
+          this.headerUserNameandSurname = 'Gast';
+
         } else {
+          this.profilePic = user.photoURL;
           this.headerProfilePic = user.photoURL;
+          this.userNameandSurname = user.displayName;
+          this.headerUserNameandSurname = user.displayName;
         }
-        this.userNameandSurname = user.displayName;
-        this.headerUserNameandSurname = user.displayName;
+
         this.userEmailAddress = user.email;
         this.currentUserId = user.uid;
       } else {
-        this.profilePic = 'assets/img/login/profile_generic_big.png';
+        this.profilePic = 'https://firebasestorage.googleapis.com/v0/b/dabubble-2a0d1.appspot.com/o/profileImages%2Fprofile_generic_big.png?alt=media&token=21d6596f-09e9-402b-8191-db3ad0f77b26';
         this.userNameandSurname = 'Max Mustermann';
         this.userEmailAddress = 'maxmustermann@gmail.com'
       }
