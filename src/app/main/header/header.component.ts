@@ -174,11 +174,12 @@ export class HeaderComponent implements OnInit {
       this.serviceProfilCard.getTheLoggedInUser();
       this.showDropdownMenu = active;
       // this.isOverlayActive = active;  
+    }
+    this.serviceProfilCard.isOverlayDropdownActive = true;
 
-    }
-    if (!this.serviceProfilCard.isProfilCardActive) {
+/*     if (!this.serviceProfilCard.isProfilCardActive) {
       this.serviceProfilCard.isOverlayDropdownActive = active;
-    }
+    } */
   }
 
   /**

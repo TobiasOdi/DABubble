@@ -15,12 +15,12 @@
     opacity: 0;
 }
 
-.overlay.active {
+.active {
     z-index: 200;
     opacity: 1;
 }
 
-.overlay.activeHeader {
+.activeHeader {
     z-index: 100;
     opacity: 1;
 }

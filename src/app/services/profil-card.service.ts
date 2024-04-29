@@ -97,15 +97,6 @@ export class ProfilCardService {
  }
 
 
-
-
-
-
-
-
-
-
-
   /**
   * Updates the header with the provided name.
   * @param name - The name to be displayed in the header.
