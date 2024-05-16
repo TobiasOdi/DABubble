@@ -3,6 +3,7 @@ import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { ChatService } from '../../../../services/chat.service';
 import { Firestore, collection, onSnapshot, query, doc, setDoc } from '@angular/fire/firestore';
+import { ProfilCardService } from '../../../../services/profil-card.service';
 
 @Component({
   selector: 'app-profilecards-other-users',
@@ -20,7 +21,7 @@ export class ProfilecardsOtherUsersComponent {
   @Input() showMembersDialogOpen!: boolean;
   @Output() showMembersDialogOpenChild = new EventEmitter();
 
-  constructor(private chatService: ChatService) { }
+  constructor(private chatService: ChatService, public serviceProfilCard: ProfilCardService) { }
 
   /**
    * Checks if the currently logged in user already has a DM chat with the selected user.
@@ -32,7 +33,7 @@ export class ProfilecardsOtherUsersComponent {
     const q = query(collection(this.firestore, `users/${this.currentUser}/allDirectMessages`));
     return onSnapshot(q, (list) => {
       list.forEach(element => {
-        if(element.id === this.memberData.id) {
+        if(element.id == this.memberData.id) {
           this.chatService.setSelectedUserId(this.memberData.id);
           this.closeProfileCard();
           this.closeShowMembers();
@@ -41,7 +42,8 @@ export class ProfilecardsOtherUsersComponent {
           this.addDirectMessage();
           this.closeProfileCard();
           this.closeShowMembers();
-        }  
+          this.chatService.setSelectedUserId(this.memberData.id);
+        }    
       });
     });
   }

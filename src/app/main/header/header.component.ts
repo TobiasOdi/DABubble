@@ -175,7 +175,7 @@ export class HeaderComponent implements OnInit {
       this.showDropdownMenu = active;
       // this.isOverlayActive = active;  
     }
-    this.serviceProfilCard.isOverlayDropdownActive = true;
+    this.serviceProfilCard.isOverlayDropdownActive = active;
 
 /*     if (!this.serviceProfilCard.isProfilCardActive) {
       this.serviceProfilCard.isOverlayDropdownActive = active;
@@ -206,10 +206,12 @@ export class HeaderComponent implements OnInit {
       await this.auth.signOut();
       this.router.navigateByUrl('login');
       this.serviceProfilCard.isOverlayActive = false;
+      this.serviceProfilCard.isOverlayDropdownActive = false;
     } else {
       await this.auth.signOut();
       this.router.navigateByUrl('login');
       this.serviceProfilCard.isOverlayActive = false;
+      this.serviceProfilCard.isOverlayDropdownActive = false;
     }
   }
 

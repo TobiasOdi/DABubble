@@ -49,7 +49,7 @@ export class ProfilCardService {
     this.isOverlayActive = active;
     this.isOverlayDropdownActive = active;
     this.isProfilCardActiveChanged.emit(active); // Emit event when the variable changes
-    if (this.isProfilCardActive) {
+    if (this.isProfilCardActive = true) {
       this.isProfilCardActive = false;
     }
   }
@@ -158,14 +158,15 @@ export class ProfilCardService {
     const q = query(collection(this.db, `users/${this.auth.currentUser.uid}/allDirectMessages`));
     return onSnapshot(q, (list) => {
       list.forEach(element => {
-        if (element.id === this.otherUserId) {
+          if (element.id === this.otherUserId) {
           this.chatService.setSelectedUserId(this.otherUserId);
           this.toggleCardOverlay(false);
         } else {
           // Create new DM Chat
           this.addDirectMessage();
           this.toggleCardOverlay(false);
-        }
+          this.chatService.setSelectedUserId(this.otherUserId);
+        }  
       });
     });
   }

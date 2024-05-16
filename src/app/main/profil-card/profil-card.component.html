@@ -71,7 +71,7 @@
             </div>
         </div>
 
-        <div *ngIf="!serviceProfilCard.isCurrentUserActive" class="messageContainer">
+        <div *ngIf="serviceProfilCard.currentUserId != 'X9APNd1z7yVsW7sP3kyVk79DHWo1'" class="messageContainer">
             <div (click)="serviceProfilCard.writeDirectMessage()">
                 <mat-icon class="material-symbols-outlined" fontIcon="mode_comment"></mat-icon>
                 <span>Nachricht</span>
